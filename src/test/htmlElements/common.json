@@ -1,0 +1,4 @@
+{
+  "textInputContainer": "div[class*='form-control']",
+  "textInputLabel": "div[class*='form-control'] > label"
+}
