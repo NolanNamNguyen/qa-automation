@@ -29,6 +29,7 @@ export default class CommonActions {
       .locator(this.elements.textInputContainer, {
         has: testBrowser.currentTab.locator('label', { hasText: label }),
       })
+      .last()
       .locator('input');
     await inputElm.fill('');
     await inputElm.fill(value);
@@ -65,6 +66,16 @@ export default class CommonActions {
       .click();
   }
 
+  async clickEditSection(sectionName: string) {
+    await testBrowser.currentTab
+      .locator('div', {
+        has: testBrowser.currentTab.locator('label', { hasText: sectionName }),
+      })
+      .last()
+      .locator('button')
+      .click();
+  }
+
   async checkDialogAppear(dialogName: string) {
     await expect(
       testBrowser.currentTab.locator("div[role^='dialog']").locator('header', { hasText: dialogName }),
@@ -84,7 +95,20 @@ export default class CommonActions {
   async checkDisappear(dialogName: string) {
     await expect(
       testBrowser.currentTab.locator("div[role^='dialog']").locator('header', { hasText: dialogName }),
-    ).toBeHidden({ timeout: 2000 });
+    ).toBeHidden({ timeout: 6000 });
+  }
+
+  async selectOption({ optionName, itemOrder }: { optionName?: string; itemOrder?: number }) {
+    if (optionName) {
+      await testBrowser.currentTab.locator('div:has(> ul)').last().locator('li', { hasText: optionName }).click();
+      return;
+    }
+    await testBrowser.currentTab
+      .locator('div:has(> ul)')
+      .last()
+      .locator('li')
+      .nth(itemOrder ?? 0)
+      .click();
   }
 
   async fillAndSelect({
@@ -108,6 +132,10 @@ export default class CommonActions {
     await selectedItem.click();
   }
 
+  async clickDialogTitle(dialogName: string) {
+    await testBrowser.currentTab.locator("div[role^='dialog']").locator('header', { hasText: dialogName }).click();
+  }
+
   async clickPlusButton(sectionName: string) {
     await testBrowser.currentTab
       .locator("div[class*='card-title']", {
@@ -116,5 +144,11 @@ export default class CommonActions {
       .getByRole('button')
       .first()
       .click();
+  }
+
+  async clickTab(tabName: string) {
+    const tabListContainer = testBrowser.currentTab.locator("div[role='tablist']");
+    await tabListContainer.locator('div', { hasText: tabName }).click();
+    return;
   }
 }

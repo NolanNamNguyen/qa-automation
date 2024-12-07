@@ -20,7 +20,7 @@ When('I click the {string} pencil button in the {string} section', async (orderT
   await commonActions.clickPencilButton({ sectionName, order: convertWordToNumber(orderText) });
 });
 
-When('I click the plus button beside the {string} section', async (sectionName: string) => {
+When('I click the plus button in the {string} section', async (sectionName: string) => {
   await commonActions.clickPlusButton(sectionName);
 });
 
@@ -43,6 +43,14 @@ When('I input {string} to the {string} field', async (inputValue: string, fieldN
   await commonActions.inputText(fieldName, inputValue);
 });
 
+When('I click the tab {string}', async (tabName: string) => {
+  await commonActions.clickTab(tabName);
+});
+
+When('I select the {string} item in the list', async (tabOrder: string) => {
+  await commonActions.selectOption({ itemOrder: convertWordToNumber(tabOrder) });
+});
+
 When(
   'I input {string} and select {string} for the {string} field',
   async (fillValue: string, selectValue: string, fieldName: string) => {
@@ -53,3 +61,11 @@ When(
     });
   },
 );
+
+When('I click on the {string} dialog title', async (dialogName: string) => {
+  await commonActions.clickDialogTitle(dialogName);
+});
+
+When('I click pencil to edit the {string} section', async (sectionName: string) => {
+  await commonActions.clickEditSection(sectionName);
+});
