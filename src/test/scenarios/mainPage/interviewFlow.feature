@@ -3,13 +3,13 @@ Feature: User Login and search for job
   Background:
     Given I login to the application as "qatest2@gmail.com"
 
-  @searchJobFlow
+  @all @searchJobFlow
   Scenario: User login and search for job
     When I input "qa automation" to the input with "Search Job" placeholder
     When I click the "Search" button
     When Page sleep for 30 seconds
 
-  @updateProfileFlow
+  @all @updateProfileFlow
   Scenario: User Update profile
     When I click the "1st" pencil button in the "profile-header" section
     Then the "Edit personal info" dialog appears

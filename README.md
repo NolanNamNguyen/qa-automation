@@ -1,6 +1,6 @@
 # Environment Requirements:
 
-- Minimum NodeJS version: 16
+- Minimum NodeJS version: v18
 
 # Install:
 
@@ -10,8 +10,8 @@
 ## How to run?
 
 - $ npm run test:internal
-- $ npm run run test
-- $ PWDEBUG=1 npm run test
+- $ npm run test
+- **debug mode** : $`PWDEBUG=1 npm run test --tags=@loginFlow --testbrowser=chrome`
 
 ## How to run on Windows?
 
